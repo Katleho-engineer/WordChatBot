@@ -3,6 +3,7 @@ from rest_framework import status
 from rest_framework.views import APIView
 
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.throttling import UserRateThrottle, AnonRateThrottle
 
 from .models import Chat
 from .serializers import ChatSerializer
@@ -15,6 +16,7 @@ from django.contrib.auth.models import User
 class Chatting(APIView):
 
     permission_classes = [IsAuthenticated]
+    throttle_classes = [UserRateThrottle]
 
     def get(self, request):
         user = request.user.username
