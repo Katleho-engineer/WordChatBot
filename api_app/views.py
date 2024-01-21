@@ -11,8 +11,6 @@ from Bot.main import get_response
 
 from django.contrib.auth.models import User
 
-from django.http import JsonResponse
-
 
 class Chatting(APIView):
 
@@ -59,6 +57,9 @@ class Chatting(APIView):
             return Response(serializer.errors)
 
     def delete(self, request):
-        chats = Chat.objects.all()
+        user = request.user.username
+        host = User.objects.get(username=user)
+
+        chats = host.host_chat.all()
         chats.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
