@@ -25,6 +25,7 @@ class Chatting(APIView):
         return Response(serializer.data)
 
     def post(self, request):
+
         user = request.user.username
         host = User.objects.get(username=user)
 
@@ -51,7 +52,7 @@ class Chatting(APIView):
 
         if serializer.is_valid():
             serializer.save()
-            return Response(serializer.data['bot_response'])
+            return Response(serializer.data['bot_response'], status=status.HTTP_201_CREATED)
 
         else:
             return Response(serializer.errors)
