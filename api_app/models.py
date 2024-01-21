@@ -1,9 +1,9 @@
 from django.db import models
-
-# Create your models here.
+from django.contrib.auth.models import User
 
 
 class Chat(models.Model):
+    host = models.ForeignKey(User, null=True, on_delete=models.CASCADE, related_name='host_chat')
     user_input = models.CharField(max_length=200)
     bot_response = models.TextField()
     created = models.DateTimeField(auto_now_add=True)

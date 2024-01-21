@@ -2,6 +2,11 @@ from django.contrib import admin
 
 from .models import Chat
 
-admin.site.register(Chat)
+
+class ChatAdmin(admin.ModelAdmin):
+    readonly_fields = ("bot_response", "created")
+
+
+admin.site.register(Chat, ChatAdmin)
 
 # Register your models here.

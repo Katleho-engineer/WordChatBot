@@ -71,7 +71,6 @@ def get_response(user_input):
 def lastWord(string):
 
     lis = list(string.split(" "))
-
     length = len(lis)
 
     return lis[length - 1]
