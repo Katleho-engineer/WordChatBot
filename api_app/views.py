@@ -5,10 +5,13 @@ from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.throttling import UserRateThrottle, AnonRateThrottle
 
+from rest_framework.authtoken.models import Token
+from . import models
+
 from django.contrib.auth import login, authenticate
 
 from .models import Chat
-from .serializers import ChatSerializer, LoginSerializer
+from .serializers import ChatSerializer, RegistrationSerializer
 
 from Bot.main import get_response
 
@@ -69,21 +72,25 @@ class Chatting(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
-class Login(APIView):
+class Register(APIView):
     def post(self, request):
+        serializer = RegistrationSerializer(data=request.data)
+
         data = {}
-        serializer = LoginSerializer(data=self.request.data)
 
         if serializer.is_valid():
-            data['response'] = "Logged in Successfully"
+            account = serializer.save()
 
-            # user = serializer.validated_data['user']
-            print('serializer :', serializer)
-            user = authenticate(request, username=request.user.username, password=request.user.password)
-            login(request, user)
+            data['response'] = 'Registration Successful'
+            data['username'] = account.username
+            data['email'] = account.email
+
+            token = Token.objects.get(user=account).key
+
+            data['token'] = token
 
         else:
             data = serializer.errors
 
-        return Response(data, status=status.HTTP_202_ACCEPTED)
+        return Response(data, status=status.HTTP_201_CREATED)
 
