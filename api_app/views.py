@@ -5,8 +5,10 @@ from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.throttling import UserRateThrottle, AnonRateThrottle
 
+from django.contrib.auth import login, authenticate
+
 from .models import Chat
-from .serializers import ChatSerializer
+from .serializers import ChatSerializer, LoginSerializer
 
 from Bot.main import get_response
 
@@ -14,7 +16,6 @@ from django.contrib.auth.models import User
 
 
 class Chatting(APIView):
-
     permission_classes = [IsAuthenticated]
     throttle_classes = [UserRateThrottle]
 
@@ -66,3 +67,23 @@ class Chatting(APIView):
         chats = host.host_chat.all()
         chats.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class Login(APIView):
+    def post(self, request):
+        data = {}
+        serializer = LoginSerializer(data=self.request.data)
+
+        if serializer.is_valid():
+            data['response'] = "Logged in Successfully"
+
+            # user = serializer.validated_data['user']
+            print('serializer :', serializer)
+            user = authenticate(request, username=request.user.username, password=request.user.password)
+            login(request, user)
+
+        else:
+            data = serializer.errors
+
+        return Response(data, status=status.HTTP_202_ACCEPTED)
+
