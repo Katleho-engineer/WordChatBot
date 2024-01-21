@@ -1,6 +1,8 @@
 from rest_framework import status
 from rest_framework.test import APITestCase
 
+from rest_framework.authtoken.models import Token
+
 from django.urls import reverse
 from django.contrib.auth.models import User
 
@@ -31,7 +33,7 @@ class TestChat(APITestCase):
         response = self.client.delete(url)
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
 
-'''
+
 class RegisterTestCase(APITestCase):
 
     def test_register(self):
@@ -71,4 +73,3 @@ class LoginLogoutTestCase(APITestCase):
         url = reverse('logout-api')
         response = self.client.post(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-'''
