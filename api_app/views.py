@@ -94,3 +94,12 @@ class Register(APIView):
 
         return Response(data, status=status.HTTP_201_CREATED)
 
+
+class Logout(APIView):
+
+    def post(self, request):
+        data = {
+            "response": "Logged out successfully"
+        }
+        request.user.auth_token.delete()
+        return Response(data, status=status.HTTP_200_OK)
