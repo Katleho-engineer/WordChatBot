@@ -1,4 +1,4 @@
-### NB: If the instructions below are hard follow, I attached video in this folder showing how to implement the.
+### NB: If the instructions below are not clear, I attached video in this folder showing how to implement the.
 
 ## Type of chatbot:
 ### This a dictionary chatbot.
@@ -26,7 +26,7 @@
 
 ## Rest api endpoints:
 ### ~ /chat  method = ['get', 'post', 'delete']
-#### You post request and get responses. You can get all the messages with the chatbot including timestamps. AUTHORIZATION REQUIRED.
+#### You post requests and get responses. You can get all the messages with the chatbot including timestamps. AUTHORIZATION REQUIRED.
 
 ### ~ /login  method = ['post']
 #### You can login and get token key in response.
@@ -42,11 +42,11 @@
 
 ## Interact with the rest api
 #### You can either use the browser url or use curl. 
-#### I just that you use the browser, it's very easy to use.
+#### I suggest that you use the browser, it's very easy to use.
 
 ## Instructions for using the browser:
-### 1: Register / Login (You'll the token key in response)
-### 2: Copy the token key and press "Authorize" button, type Token and past token key. E.g Token 43h5b4rf34tt434t
+### 1: Register / Login (You'll get the token key in response)
+### 2: Copy the token key and press "Authorize" button, type Token and paste token key. E.g Token 43h5b4rf34tt434t
 ### 3. Now you're authorized and use /chat endpoint to send requests.
 ### 4. When you're done you can /logout or /delete-account
 
