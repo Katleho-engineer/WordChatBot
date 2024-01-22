@@ -33,7 +33,7 @@ def help_me():
         ~ Antonym of success
         ~ Synonym of life
         ~ Syllables of complicated
-        ~ Part of wheel
+        ~ a wheel is part of
         ~ pronunciation pf bombastic
         ~ Use careful in a sentence
         ~ Give me everything about lemon

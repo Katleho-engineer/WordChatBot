@@ -67,7 +67,7 @@ def get_response(user_input):
     return error.error_response()
 
 
-# function finds the last word in a sentence
+# returns the last word in a sentence
 def lastWord(string):
 
     lis = list(string.split(" "))
@@ -76,7 +76,7 @@ def lastWord(string):
     return lis[length - 1]
 
 
-# function finds the first word in a sentence
+# returns the first word in a sentence
 def firstWord(string):
 
     lis = list(string.split(" "))
@@ -87,7 +87,7 @@ def firstWord(string):
     return new_words[0]
 
 
-# function finds the word that comes after use
+# returns the word that comes after use
 def useWOrd(sentence):
     lis = list(sentence.split(" "))
 

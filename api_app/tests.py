@@ -7,7 +7,7 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 
 
-class TestChat(APITestCase):
+class ChatTestCase(APITestCase):
 
     def setUp(self):
         user = User.objects.create_user(username='testuser', password='testpassword')
@@ -73,3 +73,15 @@ class LoginLogoutTestCase(APITestCase):
         url = reverse('logout-api')
         response = self.client.post(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+
+class DeleteAccountTestCase(APITestCase):
+
+    def setUp(self):
+        user = User.objects.create_user(username='testuser', password='testpassword')
+        self.client.force_authenticate(user=user)
+
+    def test_delete_account(self):
+        url = reverse('delete_account-api')
+        response = self.client.delete(url)
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)

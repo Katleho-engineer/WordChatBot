@@ -8,9 +8,6 @@ from rest_framework.throttling import UserRateThrottle, AnonRateThrottle
 from rest_framework.authtoken.models import Token
 from . import models
 
-from django.contrib.auth import login, authenticate
-
-from .models import Chat
 from .serializers import ChatSerializer, RegistrationSerializer, ChatSerializer2
 
 from Bot.main import get_response
@@ -53,7 +50,7 @@ class Chatting(APIView):
         user = request.user.username
         host = User.objects.get(username=user)
         chats = host.host_chat.all()
-        # chats = Chat.objects.all()
+
         serializer = ChatSerializer(chats, many=True)
         return Response(serializer.data)
 
@@ -64,7 +61,7 @@ class Chatting(APIView):
 
         user_input = request.data['user_input']
 
-        # Check if input is empty
+        # Checks if input is empty
         if user_input == "":
             data = {
                 "host": host.id,
@@ -102,6 +99,8 @@ class Chatting(APIView):
 
 
 class Register(APIView):
+    throttle_classes = [AnonRateThrottle]
+
     response = {
         "token": "b9756ccbe2ed8b7ef24754ba2e18befda6cb6799"
     }

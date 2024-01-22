@@ -8,5 +8,3 @@ class ChatAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Chat, ChatAdmin)
-
-# Register your models here.

@@ -67,7 +67,7 @@
   },
   {
     "type": "greeting",
-    "user_input": ["see you", "goodbye", "bye", "sharp", "cu", "sharp"],
+    "user_input": ["see you", "goodbye", "bye", "sharp", "cu", "sharp", "cheers"],
     "bot_response": "See you later!",
     "required_words": []
   },
