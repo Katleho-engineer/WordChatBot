@@ -11,11 +11,16 @@ from . import models
 from django.contrib.auth import login, authenticate
 
 from .models import Chat
-from .serializers import ChatSerializer, RegistrationSerializer
+from .serializers import ChatSerializer, RegistrationSerializer, ChatSerializer2
 
 from Bot.main import get_response
 
 from django.contrib.auth.models import User
+
+from drf_yasg.utils import swagger_auto_schema
+from drf_yasg import openapi
+from rest_framework.schemas import AutoSchema, ManualSchema
+import coreapi
 
 
 class Chatting(APIView):
@@ -30,8 +35,8 @@ class Chatting(APIView):
         serializer = ChatSerializer(chats, many=True)
         return Response(serializer.data)
 
+    @swagger_auto_schema(request_body=ChatSerializer2)
     def post(self, request):
-
         user = request.user.username
         host = User.objects.get(username=user)
 
@@ -69,10 +74,17 @@ class Chatting(APIView):
 
         chats = host.host_chat.all()
         chats.delete()
+
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
 class Register(APIView):
+    response = {
+        "token": "b9756ccbe2ed8b7ef24754ba2e18befda6cb6799"
+    }
+    user_response = openapi.Response('response description', RegistrationSerializer)
+
+    @swagger_auto_schema(request_body=RegistrationSerializer)
     def post(self, request):
         serializer = RegistrationSerializer(data=request.data)
 
@@ -96,6 +108,7 @@ class Register(APIView):
 
 
 class Logout(APIView):
+    permission_classes = [IsAuthenticated]
 
     def post(self, request):
         data = {
@@ -103,3 +116,13 @@ class Logout(APIView):
         }
         request.user.auth_token.delete()
         return Response(data, status=status.HTTP_200_OK)
+
+
+class DeleteAccount(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def delete(self, request):
+        user = request.user
+        user.delete()
+
+        return Response(status=status.HTTP_204_NO_CONTENT)

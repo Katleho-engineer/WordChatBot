@@ -10,6 +10,16 @@ class ChatSerializer(serializers.ModelSerializer):
     class Meta:
         model = Chat
         fields = "__all__"
+        # fields = ['user_input']
+        extra_kwargs = {'user_input': {'required': True}}
+
+
+class ChatSerializer2(serializers.ModelSerializer):
+
+    class Meta:
+        model = Chat
+        # fields = "__all__"
+        fields = ['user_input']
         extra_kwargs = {'user_input': {'required': True}}
 
 
@@ -41,3 +51,6 @@ class RegistrationSerializer(serializers.ModelSerializer):
         account.save()
 
         return account
+
+
+# class RegisterResponseSerializer(serializers)

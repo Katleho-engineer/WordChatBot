@@ -136,3 +136,14 @@ REST_FRAMEWORK = {
         'user': '1000/day'
     }
 }
+
+SWAGGER_SETTINGS = {
+    'SECURITY_DEFINITIONS': {
+        'Auth Token e.g Token 545h5bfff434ewr4345345': {
+            'type': 'apiKey',
+            "in": "header",
+            "name": "Authorization",
+
+        }
+    },
+}
