@@ -19,9 +19,6 @@ from django.contrib.auth.models import User
 
 from drf_yasg.utils import swagger_auto_schema
 from drf_yasg import openapi
-from rest_framework.schemas import AutoSchema, ManualSchema
-import coreapi
-
 
 suggestions = """
     Use the following key words to get an accurate response:
