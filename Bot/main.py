@@ -92,7 +92,7 @@ def useWOrd(sentence):
     lis = list(sentence.split(" "))
 
     for i in range(len(lis)):
-        if lis[i] == 'use':
+        if lis[i].lower() == 'use':
             return lis[i + 1]
 
 
