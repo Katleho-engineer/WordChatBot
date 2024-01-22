@@ -41,10 +41,11 @@
 #### You can delete your account. AUTHORIZATION REQUIRED.
 
 ## Interact with the rest api
-#### You can either use the browser url or use curl. 
+#### You can either use the browser https://word-chatbot.onrender.com/doc or use curl. 
 #### I suggest that you use the browser, it's very easy to use.
 
 ## Instructions for using the browser:
+### url: https://word-chatbot.onrender.com/doc
 ### 1: Register / Login (You'll get the token key in response)
 ### 2: Copy the token key and press "Authorize" button, type Token and paste token key. E.g Token 43h5b4rf34tt434t
 ### 3. Now you're authorized and use /chat endpoint to send requests.
@@ -52,20 +53,20 @@
 
 ## Instructions for using curl:
 ### 1: Register an account using the code below. Replace values with your own.
-#### curl -X POST -d username=test -d email=test@gmail.com -d password=Password@123 -d password2=Password@123 http://127.0.0.1:8000/register
+#### curl -X POST -d username=test -d email=test@gmail.com -d password=Password@123 -d password2=Password@123 https://word-chatbot.onrender.com/register
 
 ### 2: Copy the token key you got as a response
 ### 3: You can post a request to the chatbot.
-#### curl --location 'http://127.0.0.1:8000/chat' --header 'Authorization: Token c0b655d30d08af8ed6cf480d821173d47f6d94e7' --header 'Content-Type: application/json' --data '{"user_input": "Use beautiful in a sentence"}'
+#### curl --location 'https://word-chatbot.onrender.com/chat' --header 'Authorization: Token c0b655d30d08af8ed6cf480d821173d47f6d94e7' --header 'Content-Type: application/json' --data '{"user_input": "Use beautiful in a sentence"}'
 
 ### 4: You can get all the chat messages.
-#### curl --location 'http://127.0.0.1:8000/chat' --header 'Authorization: Token 53684366e1470bfb336f6bbd9433799ccb5fd53f'
+#### curl --location 'https://word-chatbot.onrender.com/chat' --header 'Authorization: Token 53684366e1470bfb336f6bbd9433799ccb5fd53f'
 
 ### 5: You can delete all the messages
-#### curl --location --request DELETE 'http://127.0.0.1:8000/chat' --header 'Authorization: Token c0b655d30d08af8ed6cf480d821173d47f6d94e7'
+#### curl --location --request DELETE 'https://word-chatbot.onrender.com/chat' --header 'Authorization: Token c0b655d30d08af8ed6cf480d821173d47f6d94e7'
 
 #### 6: You can logout
-#### curl --location --request POST 'http://127.0.0.1:8000/logout' --header 'Authorization: Token f9e697c4216401c03098daa295fa86e0291b5c84'
+#### curl --location --request POST 'https://word-chatbot.onrender.com/logout' --header 'Authorization: Token f9e697c4216401c03098daa295fa86e0291b5c84'
 
 
 
