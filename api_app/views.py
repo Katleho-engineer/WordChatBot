@@ -23,10 +23,35 @@ from rest_framework.schemas import AutoSchema, ManualSchema
 import coreapi
 
 
+suggestions = """
+    Use the following key words to get an accurate response:
+        - Define
+        - Antonym
+        - Synonym
+        - Syllables
+        - Part of 
+        - Pronunciation
+        - Use in a sentence
+        - everything 
+
+
+    Here are the examples of request to make:
+        ~ define ambient
+        ~ Antonym of success
+        ~ Synonym of life
+        ~ Syllables of complicated
+        ~ a wheel is part of
+        ~ pronunciation of bombastic
+        ~ Use careful in a sentence
+        ~ Give me everything about lemon
+     """
+
+
 class Chatting(APIView):
     permission_classes = [IsAuthenticated]
     throttle_classes = [UserRateThrottle]
 
+    @swagger_auto_schema(operation_description='This will return all the chats between the user and chatbot.')
     def get(self, request):
         user = request.user.username
         host = User.objects.get(username=user)
@@ -35,7 +60,7 @@ class Chatting(APIView):
         serializer = ChatSerializer(chats, many=True)
         return Response(serializer.data)
 
-    @swagger_auto_schema(request_body=ChatSerializer2)
+    @swagger_auto_schema(request_body=ChatSerializer2, operation_description=suggestions)
     def post(self, request):
         user = request.user.username
         host = User.objects.get(username=user)
@@ -68,6 +93,7 @@ class Chatting(APIView):
         else:
             return Response(serializer.errors)
 
+    @swagger_auto_schema(operation_description='This will delete all the chats between the user and chatbot.')
     def delete(self, request):
         user = request.user.username
         host = User.objects.get(username=user)
@@ -110,6 +136,7 @@ class Register(APIView):
 class Logout(APIView):
     permission_classes = [IsAuthenticated]
 
+    @swagger_auto_schema(operation_description='This will logout the user.')
     def post(self, request):
         data = {
             "response": "Logged out successfully"
@@ -121,6 +148,7 @@ class Logout(APIView):
 class DeleteAccount(APIView):
     permission_classes = [IsAuthenticated]
 
+    @swagger_auto_schema(operation_description="This will delete the user's account.")
     def delete(self, request):
         user = request.user
         user.delete()
