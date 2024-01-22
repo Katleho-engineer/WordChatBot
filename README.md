@@ -1,4 +1,4 @@
-### NB: If the instructions below are not clear, I attached video in this folder showing how to implement the.
+### NB: If the instructions below are not clear, I attached video in this folder showing how to implement them.
 
 ## Type of chatbot:
 ### This a dictionary chatbot.
