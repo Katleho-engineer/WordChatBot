@@ -3,6 +3,15 @@
 ## Type of chatbot:
 ### This a dictionary chatbot.
 
+## Logic machine states:
+### 1: Greeting state
+### 2: Thanks state
+### 3: Mood checking state
+### 4: Goodbye state
+### 5: Error handling state
+### 6: Help state
+### 7: Chatbot interaction state
+
 ## About the chatbot:
 ### you can make request using the following keywords:
 #### - Define
