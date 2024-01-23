@@ -32,7 +32,7 @@ schema_view = get_schema_view(
       default_version='v1',
       description="This is an api that can be used like a dictionary.",
       terms_of_service="https://www.google.com/policies/terms/",
-      contact=openapi.Contact(email="contact@snippets.local"),
+      contact=openapi.Contact(email="katleho.professional@gmail.com"),
       license=openapi.License(name="BSD License"),
    ),
    public=True,
