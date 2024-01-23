@@ -73,7 +73,7 @@
   },
   {
     "type": "thanks",
-    "user_input": ["thanks", "thank you", "tnx", "ta"],
+    "user_input": ["thanks", "thank you", "tnx", "ta", "thank"],
     "bot_response": "The pleasure is all mine!",
     "required_words": []
   },
